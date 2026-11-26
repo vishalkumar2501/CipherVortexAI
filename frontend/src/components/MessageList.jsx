@@ -23,6 +23,10 @@ function MessageList() {
     "Build an interactive crypto dashboard"
   ]
 
+  const handleSelectPrompt = (promptText) => {
+    window.dispatchEvent(new CustomEvent("ciphervortex:set_prompt", { detail: { prompt: promptText } }))
+  }
+
   return (
     <div className='flex-1 overflow-y-auto px-6 py-6 space-y-5 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden'>
       {messages.length === 0 || !selectedConversation ? (
@@ -53,7 +57,8 @@ function MessageList() {
             {samplePrompts.map((s) => (
               <button
                 key={s}
-                className='text-[12px] text-slate-400 bg-violet-500/[0.06] border border-violet-500/[0.14] px-4 py-2 rounded-xl hover:bg-violet-500/[0.12] hover:text-slate-200 hover:border-violet-500/30 transition-all duration-150 cursor-pointer'
+                onClick={() => handleSelectPrompt(s)}
+                className='text-[12px] text-slate-400 bg-violet-500/[0.06] border border-violet-500/[0.14] px-4 py-2 rounded-xl hover:bg-violet-500/[0.16] hover:text-violet-200 hover:border-violet-500/40 transition-all duration-150 cursor-pointer active:scale-95'
               >
                 {s}
               </button>

@@ -19,6 +19,16 @@ function ChatInput() {
   const dispatch = useDispatch()
 
   useEffect(() => {
+    const handleSetPrompt = (e) => {
+      if (e.detail?.prompt) {
+        setValue(e.detail.prompt)
+      }
+    }
+    window.addEventListener("ciphervortex:set_prompt", handleSetPrompt)
+    return () => window.removeEventListener("ciphervortex:set_prompt", handleSetPrompt)
+  }, [])
+
+  useEffect(() => {
     const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition
     if (!SpeechRecognition) return
 
