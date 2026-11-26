@@ -6,6 +6,7 @@ import Home from './pages/Home'
 import getCurrentUser from './features/getCurrentUser'
 import { useDispatch } from 'react-redux'
 import { setUserdata } from './redux/userSlice'
+import Toast from './components/Toast'
 
 function App() {
 
@@ -21,6 +22,7 @@ useEffect(()=>{
   return (
    <>
    <Home/>
+   <Toast/>
    </>
   )
 }

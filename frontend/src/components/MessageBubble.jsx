@@ -4,6 +4,7 @@ import Markdown from 'react-markdown'
 import remarkGfm from 'remark-gfm'
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter'
 import { oneDark } from 'react-syntax-highlighter/dist/esm/styles/prism'
+import { showToast } from './Toast'
 
 function MessageBubble({ role, content, images }) {
   const isUser = role === "user"
@@ -14,6 +15,7 @@ function MessageBubble({ role, content, images }) {
   const copyCode = async (code) => {
     await navigator.clipboard.writeText(code)
     setCopiedCode(code)
+    showToast("Code copied to clipboard!", "success")
     setTimeout(() => {
       setCopiedCode("")
     }, 2000)
@@ -23,6 +25,7 @@ function MessageBubble({ role, content, images }) {
     if (!content) return
     await navigator.clipboard.writeText(content)
     setCopiedMessage(true)
+    showToast("Response copied to clipboard!", "success")
     setTimeout(() => {
       setCopiedMessage(false)
     }, 2000)
