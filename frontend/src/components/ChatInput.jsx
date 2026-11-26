@@ -6,6 +6,7 @@ import { addMessage, setArtifacts, setIsLoading, setMessages } from '../redux/me
 import { createConversation } from '../features/createConversation'
 import { addConversation, setConvTitle, setSelectedConversation } from '../redux/conversationSlice'
 import { updateConversation } from '../features/updateConversation'
+import { showToast } from './Toast'
 
 function ChatInput() {
   const [value, setValue] = useState("")
@@ -54,7 +55,7 @@ function ChatInput() {
 
   const toggleMic = () => {
     if (!recognitionRef.current) {
-      alert("Speech recognition is not supported in this browser.")
+      showToast("Speech recognition is not supported in this browser.", "error")
       return
     }
     if (listening) {
