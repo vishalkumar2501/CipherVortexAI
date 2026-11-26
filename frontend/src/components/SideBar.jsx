@@ -1,7 +1,5 @@
-import React from 'react'
-import { Coins, LogOut, Menu, MessageSquare, PanelLeftIcon, PanelRight, PenBoxIcon, PenSquare, Plus, User, X } from "lucide-react"
-import { useState } from 'react'
-import { useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
+import { Coins, LogOut, Menu, MessageSquare, PanelLeftIcon, PanelRight, PenSquare, Plus, Search, User, X } from "lucide-react"
 import { getConversations } from '../features/getConversations'
 import { useDispatch, useSelector } from 'react-redux'
 import { addConversation, setConversations, setSelectedConversation } from '../redux/conversationSlice'
@@ -18,6 +16,12 @@ function SideBar() {
     const { userData } = useSelector(state => state.user)
     const [showBilling,setShowBilling]=useState(false)
     const [mobileOpen,setMobileOpen]=useState(false)
+    const [searchQuery, setSearchQuery] = useState("")
+
+    const filteredConversations = conversations?.filter((conv) => {
+        if (!searchQuery.trim()) return true
+        return (conv?.title || "New Chat").toLowerCase().includes(searchQuery.toLowerCase().trim())
+    }) || []
     useEffect(() => {
         const getConv = async () => {
             const data = await getConversations()
@@ -148,6 +152,27 @@ function SideBar() {
                     </button>
                 </div>
 
+                <div className='px-4 pt-2 pb-1'>
+                    <div className='flex items-center gap-2 px-3 py-1.5 rounded-xl bg-white/[0.03] border border-violet-500/[0.12] focus-within:border-violet-500/35 transition-all'>
+                        <Search size={13} className='text-slate-500 shrink-0' />
+                        <input
+                            type='text'
+                            placeholder='Search conversations...'
+                            value={searchQuery}
+                            onChange={(e) => setSearchQuery(e.target.value)}
+                            className='w-full bg-transparent text-xs text-slate-200 placeholder:text-slate-500 outline-none'
+                        />
+                        {searchQuery && (
+                            <button
+                                onClick={() => setSearchQuery("")}
+                                className='text-slate-500 hover:text-slate-300 bg-transparent border-none cursor-pointer p-0'
+                            >
+                                <X size={12} />
+                            </button>
+                        )}
+                    </div>
+                </div>
+
                 {conversations.length == 0
                     ?
                     <div className='px-5 pt-4 pb-1.5 text-[10.5px] font-semibold uppercase tracking-widest text-slate-600'>
@@ -156,13 +181,18 @@ function SideBar() {
                     :
                     (
                         <div className='px-5 pt-4 pb-1.5 text-[10.5px] font-semibold uppercase tracking-widest text-slate-600'>
-                            Recents
+                            {searchQuery ? `Matching (${filteredConversations.length})` : "Recents"}
                         </div>
                     )}
 
 
                 <div className='flex-1 overflow-y-auto px-2.5 pb-2 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden'>
-                    {conversations?.map((conv, i) => {
+                    {filteredConversations.length === 0 && searchQuery ? (
+                        <div className='px-4 py-6 text-center text-xs text-slate-500'>
+                            No conversations match "{searchQuery}"
+                        </div>
+                    ) : (
+                        filteredConversations.map((conv, i) => {
                         const isActive = selectedConversation?._id == conv?._id
                         return (
                             <div
@@ -180,7 +210,7 @@ function SideBar() {
 
                             </div>
                         )
-                    })}
+                    }))}
 
                 </div>
 
