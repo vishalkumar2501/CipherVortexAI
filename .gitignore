@@ -1,23 +1,7 @@
-﻿# Dependencies
 node_modules/
-**/node_modules/
-
-# Environment files - DO NOT commit secrets
-**/.env
-**/serviceAccountKey.json
-
-# Build outputs
-frontend/dist/
-frontend/build/
-
-# Logs
-*.log
-npm-debug.log*
-
-# OS files
+.env
+*.env
+dist/
 .DS_Store
 Thumbs.db
-
-# Temp files
-backend/services/agent/temp/*
-!backend/services/agent/temp/.gitkeep
+backend/services/auth/serviceAccountKey.json

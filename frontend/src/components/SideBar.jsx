@@ -248,4 +248,4 @@ function SideBar() {
 
 }
 
-export default
+export default SideBar

@@ -98,8 +98,8 @@ function Artifact() {
               {onClose?<X size={15}/>:<PanelRightClose size={16} />}
             </button>
             <div className='flex items-center gap-2 flex-1 min-w-0'>
-              <div className='flex items-center justify-center w-6 h-6 rounded-md bg-indigo-500/10 border border-indigo-500/20 shrink-0'>
-                <Code2 className="text-indigo-400" size={12} />
+              <div className='flex items-center justify-center w-6 h-6 rounded-md bg-violet-500/10 border border-indigo-500/20 shrink-0'>
+                <Code2 className="text-violet-400" size={12} />
               </div>
               <div className='text-[13px] font-medium text-slate-200 truncate'>{artifacts[0]?.title}</div>
             </div>
@@ -117,14 +117,14 @@ function Artifact() {
                 <button
                   onClick={() => setTab("code")}
                   className={`flex items-center gap-1.5 px-2.5 py-1 text-[11px] font-medium rounded-md transition-colors duration-150
-                  ${tab === "code" ? "bg-indigo-500 text-white" : "text-slate-500 hover:text-slate-200"}`}
+                  ${tab === "code" ? "bg-violet-500 text-white" : "text-slate-500 hover:text-slate-200"}`}
                 >
                   <Code2 size={11} /> Code
                 </button>
                 <button
                   onClick={() => setTab("preview")}
                   className={`flex items-center gap-1.5 px-2.5 py-1 text-[11px] font-medium rounded-md transition-colors duration-150
-                  ${tab === "preview" ? "bg-indigo-500 text-white" : "text-slate-500 hover:text-slate-200"}`}
+                  ${tab === "preview" ? "bg-violet-500 text-white" : "text-slate-500 hover:text-slate-200"}`}
                 >
                   <Eye size={11} /> Preview
                 </button>
@@ -136,10 +136,10 @@ function Artifact() {
               artifacts[0]?.files?.map((f, index) => (
                 <button
                   onClick={() => setActiveFile(index)}
-                  className={`px-4 py-2.5 text-[11px] font-medium whitespace-nowrap transition-colors duration-150 border-r border-white/[0.05] relative cursor-pointer bg-transparent   ${activeFile === index ? "text-indigo-400" : "text-slate-500 hover:text-slate-300"}`}
+                  className={`px-4 py-2.5 text-[11px] font-medium whitespace-nowrap transition-colors duration-150 border-r border-white/[0.05] relative cursor-pointer bg-transparent   ${activeFile === index ? "text-violet-400" : "text-slate-500 hover:text-slate-300"}`}
                 >
                   {f?.name}
-                  {activeFile === index && <div className='absolute bottom-0 left-0 right-0 h-[2px] bg-indigo-500 rounded-t-full' />}
+                  {activeFile === index && <div className='absolute bottom-0 left-0 right-0 h-[2px] bg-violet-500 rounded-t-full' />}
 
                 </button>
               ))
@@ -205,7 +205,7 @@ function Artifact() {
 
       <button
         onClick={() => setMobileOpen(true)}
-        className="lg:hidden fixed bottom-24 right-4 z-40 flex items-center gap-2 px-3.5 py-2 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white text-[12px] font-medium shadow-lg shadow-indigo-500/20 border-none cursor-pointer transition-colors duration-150"
+        className="lg:hidden fixed bottom-24 right-4 z-40 flex items-center gap-2 px-3.5 py-2 rounded-xl bg-violet-600 hover:bg-violet-500 text-white text-[12px] font-medium shadow-lg shadow-violet-500/20 border-none cursor-pointer transition-colors duration-150"
 
       >
         <Code2 size={13} />

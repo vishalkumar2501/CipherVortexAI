@@ -153,7 +153,7 @@ function ChatInput() {
   ]
 
   return (
-    <div className='w-full overflow-hidden px-3 md:px-5 py-4 border-t border-white/[0.06] bg-[#09090f]'>
+    <div className='w-full overflow-hidden px-3 md:px-5 py-4 border-t border-violet-500/[0.10] bg-[#09090f]'>
       <div className='flex flex-col gap-2 bg-white/[0.03] border border-white/[0.07] rounded-2xl px-4 pt-3.5 pb-3'>
 
         <div className='flex w-[80%] gap-2 pr-2 flex-wrap'>
@@ -179,7 +179,7 @@ function ChatInput() {
 
             ${isActive
                     ? "bg-gradient-to-r from-violet-600 to-purple-700 text-white border-transparent shadow-[0_1px_8px_rgba(139,92,246,.35)]"
-                    : "bg-white/[0.03] text-slate-400 border-white/[0.06] hover:bg-white/[0.07]"
+                    : "bg-white/[0.03] text-slate-400 border-violet-500/[0.10] hover:bg-white/[0.07]"
                   }
           `}>
 
@@ -244,7 +244,7 @@ function ChatInput() {
               }
             }} />
 
-            <button className='flex items-center justify-center w-8 h-8 rounded-lg text-slate-600 hover:text-slate-400 hover:bg-white/[0.05] border border-transparent hover:border-white/[0.06] transition-all duration-150 bg-transparent cursor-pointer' onClick={() => fileRef.current.click()}>
+            <button className='flex items-center justify-center w-8 h-8 rounded-lg text-slate-600 hover:text-slate-400 hover:bg-white/[0.05] border border-transparent hover:border-violet-500/[0.10] transition-all duration-150 bg-transparent cursor-pointer' onClick={() => fileRef.current.click()}>
               <Paperclip size={16} />
             </button>
             <button
@@ -256,7 +256,7 @@ function ChatInput() {
           <button
             disabled={!value && isLoading}
             onClick={handleSendMessage}
-            className={`flex items-center justify-center w-8 h-8 rounded-lg border-none cursor-pointer transition-all duration-150 ${value.trim() ? "bg-linear-to-br from-indigo-500 to-violet-700 hover:opacity-90 text-white" : "bg-white/[0.05] text-slate-600 cursor-not-allowed"}`}>
+            className={`flex items-center justify-center w-8 h-8 rounded-lg border-none cursor-pointer transition-all duration-150 ${value.trim() ? "bg-linear-to-br from-violet-600 to-fuchsia-600 hover:opacity-90 text-white" : "bg-white/[0.05] text-slate-600 cursor-not-allowed"}`}>
           <Send size={15} />
         </button>
       </div>
