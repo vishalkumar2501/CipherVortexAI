@@ -16,6 +16,13 @@ const conversationSlice=createSlice({
         setSelectedConversation:(state,action)=>{
         state.selectedConversation=action.payload
        },
+       removeConversation:(state,action)=>{
+        const conversationId=action.payload
+        state.conversations=state.conversations.filter(c => c._id !== conversationId)
+        if(state.selectedConversation?._id === conversationId){
+            state.selectedConversation=null
+        }
+       },
 
       setConvTitle:(state,action)=>{
            const {title,conversationId}=action.payload
@@ -34,6 +41,6 @@ const conversationSlice=createSlice({
    
 })
 
-export const {setConversations,addConversation,setSelectedConversation,setConvTitle}=conversationSlice.actions 
+export const {setConversations,addConversation,setSelectedConversation,removeConversation,setConvTitle}=conversationSlice.actions 
 export default conversationSlice.reducer
 
